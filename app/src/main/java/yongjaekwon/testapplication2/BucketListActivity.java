@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public class BucketListActivity extends AppCompatActivity {
@@ -26,7 +27,11 @@ public class BucketListActivity extends AppCompatActivity {
         rvContacts = (RecyclerView) findViewById(R.id.rvContacts);
 
         // Initialize contacts
-        mBucketItems = BucketItem.createContactsList(1);
+        try {
+            mBucketItems = BucketItem.createContactsList(2);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         // Create adapter passing in the sample user data
         BucketListAdapter adapter = new BucketListAdapter(this, mBucketItems);
         // Attach the adapter to the recyclerview to populate items

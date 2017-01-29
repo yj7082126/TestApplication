@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/contact_name"
-        android:layout_toRightOf="@id/checkBox"
+        android:layout_toRightOf="@+id/checkBox"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="24sp"/>
 
@@ -21,8 +21,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/contact_date"
-        android:layout_toRightOf="@id/checkBox"
-        android:layout_below="@id/contact_name"
+        android:layout_toRightOf="@+id/checkBox"
+        android:layout_below="@+id/contact_name"
         android:textSize="16sp"/>
 
     <CheckBox
