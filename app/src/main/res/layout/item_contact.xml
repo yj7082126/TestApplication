@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:paddingTop="10dp"
-              android:paddingBottom="10dp">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+
     <TextView
-        android:layout_width="wrap_content"
+        android:text="Textview"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:id="@+id/contact_name"
-        android:onClick="sendMessage"
-        />
+        android:layout_toRightOf="@id/checkBox"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="24sp"/>
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/contact_date"
+        android:layout_toRightOf="@id/checkBox"
+        android:layout_below="@id/contact_name"
+        android:textSize="16sp"/>
 
     <CheckBox
-        android:text="CheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/checkBox"
-        />
-</LinearLayout>
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/checkBox"/>
+
+
+</RelativeLayout>

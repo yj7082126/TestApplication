@@ -5,11 +5,11 @@ import java.util.ArrayList;
 /**
  * Created by Kwon on 2017-01-27.
  */
-public class Contact {
+public class BucketItem {
     private String mName;
     private boolean mOnline;
 
-    public Contact(String name, boolean online) {
+    public BucketItem(String name, boolean online) {
         mName = name;
         mOnline = online;
     }
@@ -24,11 +24,11 @@ public class Contact {
 
     public static int lastContactId = 0;
 
-    public static ArrayList<Contact> createContactsList(int numContacts) {
-       ArrayList<Contact> contacts = new ArrayList<Contact>();
+    public static ArrayList<BucketItem> createContactsList(int numContacts) {
+       ArrayList<BucketItem> bucketItems = new ArrayList<BucketItem>();
         for (int i = 0; i< numContacts; i++) {
-            contacts.add(new Contact("Person " + (++lastContactId), i <= numContacts/2));
+            bucketItems.add(new BucketItem("Person " + (++lastContactId), i <= numContacts/2));
         }
-        return contacts;
+        return bucketItems;
     }
 }

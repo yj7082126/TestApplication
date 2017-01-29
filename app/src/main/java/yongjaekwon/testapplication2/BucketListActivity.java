@@ -8,16 +8,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class BucketListActivity extends AppCompatActivity {
 
-    ArrayList<Contact> contacts;
-    EditText nameField;
+    ArrayList<BucketItem> mBucketItems;
     RecyclerView rvContacts;
 
     @Override
@@ -26,12 +24,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         rvContacts = (RecyclerView) findViewById(R.id.rvContacts);
-        nameField = (EditText) findViewById(R.id.personName);
 
         // Initialize contacts
-        contacts = Contact.createContactsList(1);
+        mBucketItems = BucketItem.createContactsList(1);
         // Create adapter passing in the sample user data
-        ContactAdapter adapter = new ContactAdapter(this, contacts);
+        BucketListAdapter adapter = new BucketListAdapter(this, mBucketItems);
         // Attach the adapter to the recyclerview to populate items
         rvContacts.setAdapter(adapter);
         // Set layout manager to position the items
@@ -40,14 +37,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addContact(View view) {
-        //Make sure it is a name
-        String name = nameField.getText().toString();
-        if (!name.equals("")) {
-            Log.d("ListExample", "addContact " + nameField.getText().toString());
-            contacts.add(new Contact(name, true));
-            rvContacts.getAdapter().notifyDataSetChanged();
-            nameField.setText("");
-        }
+
     }
 
     public void sendMessage(View view) {
