@@ -14,7 +14,7 @@ import java.util.List;
  * Created by Kwon on 2017-01-28.
  */
 
-public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder>{
+public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.ViewHolder>{
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView nameTextView;
         public CheckBox checkMe;
@@ -25,12 +25,12 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         }
     }
 
-    private List<Contact> mContacts;
+    private List<BucketItem> mBucketItems;
     private Context mContext;
 
     // Pass in the contact array into the constructor
-    public ContactAdapter(Context context, List<Contact> contacts) {
-        mContacts = contacts;
+    public BucketListAdapter(Context context, List<BucketItem> bucketItems) {
+        mBucketItems = bucketItems;
         mContext = context;
     }
 
@@ -41,7 +41,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 
     // Usually involves inflating a layout from XML and returning the holder
     @Override
-    public ContactAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BucketListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -55,14 +55,14 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 
     // Involves populating data into the item through holder
     @Override
-    public void onBindViewHolder(ContactAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(BucketListAdapter.ViewHolder viewHolder, int position) {
         // Get the data model based on position
-        Contact contact = mContacts.get(position);
+        BucketItem bucketItem = mBucketItems.get(position);
 
         // Set item views based on your views and data model
         TextView textView = viewHolder.nameTextView;
-        textView.setText(contact.getName());
-        if(!contact.isOnline()) {
+        textView.setText(bucketItem.getName());
+        if(!bucketItem.isOnline()) {
             textView.setClickable(false);
             textView.setActivated(false);
             textView.setEnabled(false);
@@ -72,6 +72,6 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
     // Returns the total count of items in the list
     @Override
     public int getItemCount() {
-        return mContacts.size();
+        return mBucketItems.size();
     }
 }
