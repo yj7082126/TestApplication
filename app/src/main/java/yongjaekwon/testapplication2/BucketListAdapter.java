@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -16,11 +17,13 @@ import java.util.List;
 
 public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.ViewHolder>{
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView nameTextView;
+        public TextView taskView;
+        public TextView dateView;
         public CheckBox checkMe;
         public ViewHolder(View itemView) {
             super(itemView);
-            nameTextView = (TextView) itemView.findViewById(R.id.contact_name);
+            taskView = (TextView) itemView.findViewById(R.id.contact_name);
+            dateView = (TextView) itemView.findViewById(R.id.contact_date);
             checkMe = (CheckBox) itemView.findViewById(R.id.checkBox);
         }
     }
@@ -60,8 +63,10 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Vi
         BucketItem bucketItem = mBucketItems.get(position);
 
         // Set item views based on your views and data model
-        TextView textView = viewHolder.nameTextView;
+        TextView textView = viewHolder.taskView;
+        TextView dateView = viewHolder.dateView;
         textView.setText(bucketItem.getName());
+        dateView.setText(new SimpleDateFormat("MM/dd/yyyy").format(bucketItem.getDate()));
         if(!bucketItem.isOnline()) {
             textView.setClickable(false);
             textView.setActivated(false);
