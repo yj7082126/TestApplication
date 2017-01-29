@@ -66,7 +66,7 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Vi
         TextView textView = viewHolder.taskView;
         TextView dateView = viewHolder.dateView;
         textView.setText(bucketItem.getName());
-        dateView.setText(new SimpleDateFormat("MM/dd/yyyy").format(bucketItem.getDate()));
+        dateView.setText(new SimpleDateFormat("yyyy-MM-dd").format(bucketItem.getDate()));
         if(!bucketItem.isOnline()) {
             textView.setClickable(false);
             textView.setActivated(false);
