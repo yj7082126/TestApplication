@@ -1,5 +1,7 @@
 package yongjaekwon.testapplication2;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,6 +26,9 @@ public class BucketListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
+
         rvContacts = (RecyclerView) findViewById(R.id.rvContacts);
 
         // Initialize contacts
@@ -41,9 +46,24 @@ public class BucketListActivity extends AppCompatActivity {
         // That's all!
     }
 
-    public void addContact(View view) {
+    public void addItem(View view) {
+        Intent addActivity = new Intent(BucketListActivity.this, AddItemActivty.class);
+        startActivityForResult(addActivity, 1);
 
     }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                Toast.makeText(this, "Name: " + data.getStringExtra("name"), Toast.LENGTH_LONG);
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }
+
+
 
     public void sendMessage(View view) {
         TextView currentItem = (TextView)view;
@@ -73,4 +93,5 @@ public class BucketListActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
