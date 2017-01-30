@@ -37,14 +37,12 @@ public class AddItemActivty extends AppCompatActivity {
         int lat = Integer.parseInt(latitude.getText().toString());
         int lon = Integer.parseInt(longitude.getText().toString());
 
-        Intent backToMain = new Intent();
+        Intent backToMain = getIntent();
         backToMain.putExtra("name", name.getText().toString());
         backToMain.putExtra("description", description.getText().toString());
         backToMain.putExtra("latitude", lat);
         backToMain.putExtra("longitude", lon);
-        backToMain.putExtra("day", day);
-        backToMain.putExtra("month", month);
-        backToMain.putExtra("year", year);
+        backToMain.putExtra("date", date.toString());
 
         setResult(Activity.RESULT_OK, backToMain);
         finish();

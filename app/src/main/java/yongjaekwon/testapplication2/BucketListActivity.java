@@ -15,22 +15,21 @@ import android.widget.Toast;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class BucketListActivity extends AppCompatActivity {
-
     ArrayList<BucketItem> mBucketItems;
     RecyclerView rvContacts;
-
+    BucketListAdapter adapter;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
-
         rvContacts = (RecyclerView) findViewById(R.id.rvContacts);
-
         // Initialize contacts
         try {
             mBucketItems = BucketItem.createContactsList(2);
@@ -38,24 +37,29 @@ public class BucketListActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         // Create adapter passing in the sample user data
-        BucketListAdapter adapter = new BucketListAdapter(this, mBucketItems);
+        adapter = new BucketListAdapter(this, mBucketItems);
         // Attach the adapter to the recyclerview to populate items
         rvContacts.setAdapter(adapter);
         // Set layout manager to position the items
         rvContacts.setLayoutManager(new LinearLayoutManager(this));
         // That's all!
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
     }
 
     public void addItem(View view) {
-        Intent addActivity = new Intent(BucketListActivity.this, AddItemActivty.class);
+        Intent addActivity = new Intent(this, AddItemActivty.class);
         startActivityForResult(addActivity, 1);
-
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
-            if(resultCode == Activity.RESULT_OK){
+            if (resultCode == Activity.RESULT_OK) {
                 Toast.makeText(this, "Name: " + data.getStringExtra("name"), Toast.LENGTH_LONG);
+                BucketItem new_bi = new BucketItem(data.getStringExtra("name"), new Date(), false);
+                mBucketItems.add(new_bi);
+                adapter.notifyDataSetChanged();
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 //Write your code if there's no result
@@ -64,9 +68,8 @@ public class BucketListActivity extends AppCompatActivity {
     }
 
 
-
     public void sendMessage(View view) {
-        TextView currentItem = (TextView)view;
+        TextView currentItem = (TextView) view;
         String text = currentItem.getText().toString();
         Log.d("ListExample", "sendMessage to " + text);
         Toast.makeText(this, "Sending message to " + text, Toast.LENGTH_LONG).show();
